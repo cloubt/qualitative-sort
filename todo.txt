@@ -1,0 +1,10 @@
+welcome page
+system file implementation
+figure out how to mount/unmount components and use that to navigate everywhere
+finish page (with top 5 list and export)
+implement timsort in buttons.vue
+finish configuring wixtools xml stuff (images and names and stuff)
+actually finish github integration
+publish to glitch maybe (or a github.io website)
+rich search engine integration
+data server to show what other people have published???? maybe

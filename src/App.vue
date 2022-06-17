@@ -1,21 +1,48 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+  import Buttons from './components/Buttons.vue'
+  import Start from './components/Start.vue'
+  import Start1 from './components/Start.vue'
+  import { reactive, ref, shallowRef, markRaw } from 'vue'
+
+  // shallowref
+  let current = markRaw(Start)
+  function log() {
+    console.log(current.value)
+    // raw buttons no wrappers
+    current.value = markRaw(Buttons)
+    console.log(current.value)
+  }
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <!-- IDE was mean and highlighted component attribute in red :( -->
+  <component :is="current">
+    <template v-slot:left>
+      Hi guys! :)
+    </template>
+    <template v-slot:right>
+      Hello.
+    </template>
+  </component>
+  <button @click="log" v-if="current.value != Start">Go to buttons</button>
 </template>
 
 <style>
+body {
+  margin: 0;
+  text-overflow: ellipsis;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  width: 100vw;
+  min-width: 200px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  justify-content: space-around;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background-color: rgb(163, 82, 82);
 }
 </style>
